@@ -19,7 +19,10 @@
     {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/nixos/configuration.nix ];
+          modules = [
+						home-manager.nixos
+						./hosts/nixos/configuration.nix
+					];
           # specialArgs = { inherit inputs outputs; };
         };
       };
