@@ -8,6 +8,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
+		nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs =
@@ -19,6 +20,7 @@
     {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           modules = [
 						home-manager.nixos
 						./hosts/nixos/configuration.nix
@@ -28,9 +30,14 @@
       };
 
       homeConfigurations = {
-        nixos = nixpkgs.lib.homeManagerConfiguration {
+        nixos = inputs.home-manager.lib.homeManagerConfiguration {
+					pkgs = import nixpkgs {
+						system = "x86_64-linux";
+						config.allowUnfree = true;
+					};
+					extraSpecialArgs = { inherit inputs; };
           modules = [ ./hosts/nixos/home.nix ];
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           # extraSpecialArgs = { inherit inputs outputs; };
         };
       };
