@@ -18,31 +18,18 @@
     } @ inputs:
     {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
+        nixos = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/nixos/configuration.nix ];
-          specialArgs = { inherit inputs outputs; };
+          # specialArgs = { inherit inputs outputs; };
         };
       };
 
       homeConfigurations = {
-        nixos = lib.homeManagerConfiguration {
+        nixos = nixpkgs.lib.homeManagerConfiguration {
           modules = [ ./hosts/nixos/home.nix ];
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          # extraSpecialArgs = { inherit inputs outputs; };
         };
-
-        # Laptops
-        # framework = lib.homeManagerConfiguration {
-        #   modules = [ ./hosts/framework/home.nix ];
-        #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        # };
-
-        # curve = lib.homeManagerConfiguration {
-        #   modules = [ ./hosts/curve/home.nix ];
-        #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        #   extraSpecialArgs = { inherit inputs outputs; };
-        # };
       };
     };
 }
