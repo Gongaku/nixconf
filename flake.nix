@@ -37,7 +37,6 @@
 					extraSpecialArgs = { inherit inputs; };
           modules = [
 						./hosts/nixos/home.nix
-						./home-manager/import.nix
 					];
           # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           # extraSpecialArgs = { inherit inputs outputs; };

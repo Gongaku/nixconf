@@ -13,6 +13,9 @@
 	# imports = [
 	# 	(import "${home-manager}/nixos")
 	# ];
+	imports = [
+		./../../home-manager/import.nix
+	];
   home.username = "gongaku";
   home.homeDirectory = "/home/gongaku";
   home.stateVersion = "25.05";
