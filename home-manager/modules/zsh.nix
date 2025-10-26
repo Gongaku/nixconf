@@ -12,6 +12,28 @@
 		syntaxHighlighting.enable = true;
 		enableGlobalCompInit = false;
 		dotDir = ".config/zsh";
+		histSize = 100000;
+		setOptions = [
+				"BANG_HIST"                 # Treat the '!' character specially during expansion.
+				"EXTENDED_HISTORY"          # Write the history file in the ":start:elapsed;command" format.
+				"INC_APPEND_HISTORY"        # Write to the history file immediately, not when the shell exits.
+				"SHARE_HISTORY"             # Share history between all sessions.
+				"HIST_EXPIRE_DUPS_FIRST"    # Expire duplicate entries first when trimming history.
+				"HIST_IGNORE_DUPS"          # Don't record an entry that was just recorded again.
+				"HIST_IGNORE_ALL_DUPS"      # Delete old recorded entry if new entry is a duplicate.
+				"HIST_FIND_NO_DUPS"         # Do not display a line previously found.
+				"HIST_IGNORE_SPACE"         # Don't record an entry starting with a space.
+				"HIST_SAVE_NO_DUPS"         # Don't write duplicate entries in the history file.
+				"HIST_REDUCE_BLANKS"        # Remove superfluous blanks before recording entry.
+				"HIST_VERIFY"               # Don't execute immediately upon history expansion.
+				"HIST_BEEP"                 # Beep when accessing nonexistent history.
+		];
+
+		autosuggestions = {
+			enable = true;
+			async = true;
+		};
+
 		shellAliases = {
 			grep = "grep --color=auto";
 			l = "ls -CFh";
@@ -59,28 +81,16 @@
 		'';
 
 	programs.zsh.initExtra = ''
-		ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-		if [ ! -d "$ZINIT_HOME" ]; then
-			mkdir -p "$(dirname $ZINIT_HOME)"
-			git clone "https://github.com/zdharma-continuum/zinit.git" "$ZINIT_HOME"
-		fi
-
-		# Source zinit
-		source "$ZINIT_HOME/zinit.zsh"
-
-		# Plugins
-		zinit ice wait lucid
-		zinit load zsh-users/zsh-syntax-highlighting
-
-		zinit ice wait lucid
-		zinit load zsh-users/zsh-completions
-
-		zinit ice wait lucid
-		zinit load zsh-users/zsh-autosuggestions
-
 		autoload -U compinit && compinit
 		autoload -U colors && colors
+
+		NEWLINE=$(printf '\n ')
+		PS1_USER="%{$(tput setaf 51)%}%n%F{reset_color}"
+		PS1_HOST="%{$(tput setaf 46)%}%m%F{reset_color}"
+		PS1_PATH="%F{red}%~%F{reset_color}"
+		PS1_TIME="%{$(tput setaf 214)%}%D{%F %X %Z}%F{reset_color}"
+		PS1="%B$PS1_USER@$PS1_HOST:$PS1_PATH%b [%B$PS1_TIME%b]$NEWLINE%j $ "
+		export PS1
 
 		bindkey '^p' history-search-backward
 		bindkey '^n' history-search-forward
