@@ -29,7 +29,7 @@
 	outputs = { nixpkgs, ...}@inputs: {
 		nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
 			specialArgs = { inherit inputs; };
-			modules = (inputs.import-tree ./homeManagerModules);
+			modules = inputs.import-tree ./homeManagerModules;
 		};
 
 		# homeManagerModules.nixos = ./homeManagerModules;
