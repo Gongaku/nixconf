@@ -22,7 +22,7 @@
       allowedTCPPorts = [ 3389 ]; # Enable for xRDP
       allowedUDPPorts = [ 3389 ]; # Enable for xRDP
     };
-  }; 
+  };
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -64,7 +64,7 @@
     defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
     openFirewall = true;
   };
-  
+
   # Allow laptop to keep running while lid is closed
   services.logind.lidSwitch = "ignore";
 
@@ -137,7 +137,7 @@
       PermitRootLogin = "no";
       # PasswordAuthentication = false;
     };
-    openFirewall = true; 
+    openFirewall = true;
   };
 
   system.autoUpgrade = {
@@ -153,8 +153,8 @@
   };
 
   system.stateVersion = "25.11";
-  home-manager.users.gongaku = { pkgs, ... }: {
-    home.packages = [ ];
-    home.stateVersion = "22.11";
-  };
+  # home-manager.users.gongaku = { pkgs, ... }: {
+  #   home.packages = [ ];
+  #   home.stateVersion = "22.11";
+  # };
 }
