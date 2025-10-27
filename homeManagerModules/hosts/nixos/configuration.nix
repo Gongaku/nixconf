@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-			# <home-manager/nixos>
+      # <home-manager/nixos>
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -22,7 +22,7 @@
       allowedTCPPorts = [ 3389 ]; # Enable for xRDP
       allowedUDPPorts = [ 3389 ]; # Enable for xRDP
     };
-  };
+  }; 
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -64,7 +64,7 @@
     defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
     openFirewall = true;
   };
-
+  
   # Allow laptop to keep running while lid is closed
   services.logind.lidSwitch = "ignore";
 
@@ -137,7 +137,7 @@
       PermitRootLogin = "no";
       # PasswordAuthentication = false;
     };
-    openFirewall = true;
+    openFirewall = true; 
   };
 
   system.autoUpgrade = {

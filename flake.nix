@@ -25,5 +25,13 @@
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree [./hosts ./modules]);
+	# outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+	outputs = { nixpkgs, ...}@inputs: {
+		nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+			specialArgs = { inherit inputs; };
+			modules = (inputs.import-tree ./homeManagerModules);
+		};
+
+		# homeManagerModules.nixos = ./homeManagerModules;
+	};
 }
