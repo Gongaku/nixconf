@@ -5,11 +5,11 @@
 }: {
   flake.nixosConfigurations.main = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.hostMain
+      self.nixosModules.hostNixos
     ];
   };
 
-  flake.nixosModules.hostMain = {pkgs, ...}: {
+  flake.nixosModules.hostNixos = {pkgs, ...}: {
     imports = [
       self.nixosModules.base
       self.nixosModules.general
