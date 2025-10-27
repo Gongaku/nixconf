@@ -3,7 +3,7 @@
 		pkgs, config, ...
 	}: {
 		imports = [
-			self.nixosModules.extra.hjem
+			self.nixosModules.extra_hjem
 			self.nixosModules.nix
 		];
 		users.users.${config.preferences.user.name} = {
