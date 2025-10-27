@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.extra.hjem = {config, ...}: let
+  flake.nixosModules.extra_hjem = {config, ...}: let
     user = config.preferences.user.name;
   in {
     imports = [

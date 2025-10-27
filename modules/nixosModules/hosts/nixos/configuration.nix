@@ -1,121 +1,79 @@
 {
-  inputs,
-  self,
-  ...
+	inputs,
+	self,
+	...
 }: {
-  flake.nixosConfigurations.main = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.hostNixos
-    ];
-  };
+	flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
+		modules = [
+			self.nixosModules.hostNixos
+		];
+	};
 
-  flake.nixosModules.hostNixos = {pkgs, ...}: {
-    imports = [
-      self.nixosModules.base
-      self.nixosModules.general
-      self.nixosModules.desktop
-
-      # self.nixosModules.impermanence
-
-      # self.nixosModules.gaming
-      # self.nixosModules.discord
-      # self.nixosModules.gimp
-      # self.nixosModules.hyprland
-      # self.nixosModules.telegram
-      # self.nixosModules.youtube-music
-
-      # self.nixosModules.vr
-
-      # disko
-      # inputs.disko.nixosModules.disko
-      # self.diskoConfigurations.hostMain
-    ];
-
-    programs.corectrl.enable = true;
-
-    boot = {
-      loader.grub.enable = true;
-			loader.systemd-boot.enable = true;
-			loader.efi.canTouchEfiVariables = true;
-      loader.grub.efiSupport = true;
-      loader.grub.efiInstallAsRemovable = true;
-
-      supportedFilesystems.ntfs = true;
-
-      kernelParams = [
-				"quiet"
-				"amd_pstate=guided"
-				"processor.max_cstate=1"
+	flake.nixosModules.hostNixos = {pkgs, ...}: {
+		boot = {
+			loader = {
+				systemd-boot.enable = true;
+				efi.canTouchEfiVariables = true;
+			};
+			kernelParams = [
 				"console=tty50,115200"
 				"console=tty1"
 			];
-      kernelModules = [
-				"coretemp"
-				"cpuid"
-				"v4l2loopback"
-			];
-    };
+		};
 
-    # boot.plymouth.enable = true;
-
-    # services.xserver.videoDrivers = ["amdgpu"];
-    # boot.initrd.kernelModules = ["amdgpu"];
-
-    networking = {
-      hostName = "nixos";
-      networkmanager.enable = true;
-      # firewall.enable = false;
+		networking = {
+			hostName = "nixos"; # Define your hostname.
+			networkmanager.enable = true;
 			firewall = {
 				enable = true;
 				allowedTCPPorts = [ 3389 ]; # Enable for xRDP
 				allowedUDPPorts = [ 3389 ]; # Enable for xRDP
 			};
-    };
+		};
 
-    # virtualisation.libvirtd.enable = true;
-    # virtualisation.podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    #   defaultNetwork.settings = {
-    #     dns_enabled = true;
-    #   };
-    # };
-    #
-    # hardware.cpu.amd.updateMicrocode = true;
-    #
-    services = {
-      # hardware.openrgb.enable = true;
-      flatpak.enable = true;
-      # udisks2.enable = true;
-      printing.enable = true;
+		# Set your time zone.
+		time.timeZone = "America/Denver";
 
-			xserver = {
-				enable = true;
-				xkb = {
-					layout = "us";
-					variant = "";
-				};
+		# Select internationalisation properties.
+		i18n = {
+			defaultLocale = "en_US.UTF-8";
+			extraLocaleSettings = {
+				LC_ADDRESS = "en_US.UTF-8";
+				LC_IDENTIFICATION = "en_US.UTF-8";
+				LC_MEASUREMENT = "en_US.UTF-8";
+				LC_MONETARY = "en_US.UTF-8";
+				LC_NAME = "en_US.UTF-8";
+				LC_NUMERIC = "en_US.UTF-8";
+				LC_PAPER = "en_US.UTF-8";
+				LC_TELEPHONE = "en_US.UTF-8";
+				LC_TIME = "en_US.UTF-8";
 			};
+		};
 
-			displayManager.gdm = {
-				enable = true;
-				autoSuspend = false;
+		# Enable the X11 windowing system.
+		services.xserver = {
+			enable = true;
+			xkb = { # Enable Keymapping
+				layout = "us";
+				variant = "";
 			};
+		};
+		services.displayManager.gdm = {
+			enable = true;
+			autoSuspend = false;
+		};
+		services.desktopManager.gnome.enable = true;
 
-  		desktopManager.gnome.enable = true;
+		# Enable RDP
+		services.gnome.gnome-remote-desktop.enable = true;
+		services.xrdp = {
+			enable = true;
+			defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+			openFirewall = true;
+		};
 
-			# Enable RDP
-			gnome.gnome-remote-desktop.enable = true;
-			xrdp = {
-				enable = true;
-				defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-				openFirewall = true;
-			};
-
-			# Allow laptop to keep running while lid is closed
-			logind.lidSwitch = "ignore";
-
-    };
+		# Allow laptop to keep running while lid is closed
+		services.logind.lidSwitch = "ignore";
 
 		systemd.sleep.extraConfig = ''
 			AllowSuspend=no
@@ -123,23 +81,64 @@
 			AllowHybridSleep=no
 			AllowSuspendThenHibernate=no
 		'';
-    # programs.adb.enable = true;
-    #
-    # programs.alvr.enable = true;
-    # programs.alvr.openFirewall = true;
 
-    environment.systemPackages = with pkgs; [
-      wineWowPackages.stable
-      wineWowPackages.waylandFull
-      winetricks
-      glib
-      bs-manager
-    ];
+		services.printing.enable = true;
 
-    # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    # xdg.portal.enable = true;
-    #
-    hardware.graphics.enable = true;
-    system.stateVersion = "25.11";
-  };
+		services.pulseaudio.enable = false;
+		security.rtkit.enable = true;
+		services.pipewire = {
+			enable = true;
+			alsa.enable = true;
+			alsa.support32Bit = true;
+			pulse.enable = true;
+			# If you want to use JACK applications, uncomment this
+			#jack.enable = true;
+
+			# use the example session manager (no others are packaged yet so this is enabled by default,
+			# no need to redefine it in your config for now)
+			#media-session.enable = true;
+		};
+
+		services.displayManager.autoLogin.enable = true;
+		services.displayManager.autoLogin.user = "gongaku";
+		systemd.services."getty@tty1".enable = false;
+		systemd.services."autovt@tty1".enable = false;
+
+  	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+		environment.systemPackages = with pkgs; [
+		 git
+		 vim
+		 wget
+		 tmux
+		 nettools
+		 gnome-remote-desktop
+		 xrdp
+		 gnome-session
+		];
+		environment.variables.EDITOR = "vim";
+
+		services.openssh = {
+			enable = true;
+			settings = {
+				X11Forwarding = true;
+				PermitRootLogin = "no";
+				# PasswordAuthentication = false;
+			};
+			openFirewall = true;
+		};
+
+		system.autoUpgrade = {
+			enable = true;
+			flake = inputs.self.outPath;
+			flags = [
+				"--update-input"
+				"nixpkgs"
+				"-L" # print build logs
+			];
+			dates = "02:00";
+			randomizedDelaySec = "45min";
+		};
+
+		system.stateVersion = "25.11";
+	};
 }
