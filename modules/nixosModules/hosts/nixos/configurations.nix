@@ -11,6 +11,9 @@
 	};
 
 	flake.nixosModules.hostNixos = {pkgs, ...}: {
+		imports = [
+			self.nixosModules.base_config
+		];
 		boot.loader.systemd-boot.enable = true;
 		boot.loader.efi.canTouchEfiVariables = true;
 		boot.kernelParams = [
@@ -102,15 +105,15 @@
 			enable = true;
 		};
 
-		users.users.gongaku = {
-			shell = pkgs.zsh;
-			isNormalUser = true;
-			description = "gongaku";
-			extraGroups = [ "networkmanager" "wheel" ];
-			packages = with pkgs; [
-			#  thunderbird
-			];
-		};
+		# users.users.gongaku = {
+		# 	shell = pkgs.zsh;
+		# 	isNormalUser = true;
+		# 	description = "gongaku";
+		# 	extraGroups = [ "networkmanager" "wheel" ];
+		# 	packages = with pkgs; [
+		# 	#  thunderbird
+		# 	];
+		# };
 
 		services.displayManager.autoLogin.enable = true;
 		services.displayManager.autoLogin.user = "gongaku";
@@ -119,7 +122,7 @@
 
 		programs.firefox.enable = true;
 
-		nix.settings.experimental-features = [ "nix-command" "flakes" ];
+		# nix.settings.experimental-features = [ "nix-command" "flakes" ];
 		# List packages installed in system profile. To search, run:
 		# $ nix search wget
 		environment.systemPackages = with pkgs; [
