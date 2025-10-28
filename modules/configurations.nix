@@ -3,6 +3,13 @@
 	self,
 	...
 }: {
+	flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
+		system = "x86_64-linux";
+		modules = [
+			self.nixosModules.hostNixos
+		];
+	};
+
 	flake.nixosModules.hostNixos = {pkgs, ...}: {
 		boot.loader.systemd-boot.enable = true;
 		boot.loader.efi.canTouchEfiVariables = true;
