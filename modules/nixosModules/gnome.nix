@@ -1,0 +1,41 @@
+{
+	self,
+	...
+}:{
+	flake.nixosModules.gnome = {
+		pkgs,
+		config,
+		...
+	}: {
+		services = {
+			xserver = {
+				enable = true;
+				xkb = {
+					layout = "us";
+					variant = "";
+				};
+			};
+
+			displayManager.gdm = {
+				enable = true;
+				autoSuspend = false;
+			};
+
+			desktopManager.gnome.enable = true;
+
+			# Enable GNOME Remote Desktop Access
+			gnome.gnome-remote-desktop.enable = true;
+			xrdp = {
+				enable = true;
+				defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+				openFirewall = true;
+			};
+		};
+
+		environment.systemPackages = with pkgs; [
+			gnome-remote-desktop
+			gnome-session
+			xrdp
+		];
+	};
+}

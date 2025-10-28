@@ -13,6 +13,9 @@
 	flake.nixosModules.hostNixos = {pkgs, ...}: {
 		imports = [
 			self.nixosModules.base_config
+			self.nixosModules.setup
+			self.nixosModules.gnome
+			self.nixosModules.openssh
 		];
 		boot.loader.systemd-boot.enable = true;
 		boot.loader.efi.canTouchEfiVariables = true;
@@ -51,26 +54,26 @@
 		};
 
 		# Enable the X11 windowing system.
-		services.xserver = {
-			enable = true;
-			xkb = { # Enable Keymapping
-				layout = "us";
-				variant = "";
-			};
-		};
-		services.displayManager.gdm = {
-			enable = true;
-			autoSuspend = false;
-		};
-		services.desktopManager.gnome.enable = true;
+		# services.xserver = {
+		# 	enable = true;
+		# 	xkb = { # Enable Keymapping
+		# 		layout = "us";
+		# 		variant = "";
+		# 	};
+		# };
+		# services.displayManager.gdm = {
+		# 	enable = true;
+		# 	autoSuspend = false;
+		# };
+		# services.desktopManager.gnome.enable = true;
 
 		# Enable RDP
-		services.gnome.gnome-remote-desktop.enable = true;
-		services.xrdp = {
-			enable = true;
-			defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-			openFirewall = true;
-		};
+		# services.gnome.gnome-remote-desktop.enable = true;
+		# services.xrdp = {
+		# 	enable = true;
+		# 	defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+		# 	openFirewall = true;
+		# };
 
 		# Allow laptop to keep running while lid is closed
 		services.logind.lidSwitch = "ignore";
@@ -131,21 +134,21 @@
 		 wget
 		 tmux
 		 nettools
-		 gnome-remote-desktop
-		 xrdp
-		 gnome-session
+		 # gnome-remote-desktop
+		 # xrdp
+		 # gnome-session
 		];
 		environment.variables.EDITOR = "vim";
 
-		services.openssh = {
-			enable = true;
-			settings = {
-				X11Forwarding = true;
-				PermitRootLogin = "no";
-				# PasswordAuthentication = false;
-			};
-			openFirewall = true;
-		};
+		# services.openssh = {
+		# 	enable = true;
+		# 	settings = {
+		# 		X11Forwarding = true;
+		# 		PermitRootLogin = "no";
+		# 		# PasswordAuthentication = false;
+		# 	};
+		# 	openFirewall = true;
+		# };
 
 		system.autoUpgrade = {
 			enable = true;
