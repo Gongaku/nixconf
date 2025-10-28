@@ -34,45 +34,23 @@
 			};
 		};
 
-		# Set your time zone.
-		time.timeZone = "America/Denver";
-
-		# Select internationalisation properties.
-		i18n = {
-			defaultLocale = "en_US.UTF-8";
-			extraLocaleSettings = {
-				LC_ADDRESS = "en_US.UTF-8";
-				LC_IDENTIFICATION = "en_US.UTF-8";
-				LC_MEASUREMENT = "en_US.UTF-8";
-				LC_MONETARY = "en_US.UTF-8";
-				LC_NAME = "en_US.UTF-8";
-				LC_NUMERIC = "en_US.UTF-8";
-				LC_PAPER = "en_US.UTF-8";
-				LC_TELEPHONE = "en_US.UTF-8";
-				LC_TIME = "en_US.UTF-8";
-			};
-		};
-
-		# Enable the X11 windowing system.
-		# services.xserver = {
-		# 	enable = true;
-		# 	xkb = { # Enable Keymapping
-		# 		layout = "us";
-		# 		variant = "";
+		# # Set your time zone.
+		# time.timeZone = "America/Denver";
+		#
+		# # Select internationalisation properties.
+		# i18n = {
+		# 	defaultLocale = "en_US.UTF-8";
+		# 	extraLocaleSettings = {
+		# 		LC_ADDRESS = "en_US.UTF-8";
+		# 		LC_IDENTIFICATION = "en_US.UTF-8";
+		# 		LC_MEASUREMENT = "en_US.UTF-8";
+		# 		LC_MONETARY = "en_US.UTF-8";
+		# 		LC_NAME = "en_US.UTF-8";
+		# 		LC_NUMERIC = "en_US.UTF-8";
+		# 		LC_PAPER = "en_US.UTF-8";
+		# 		LC_TELEPHONE = "en_US.UTF-8";
+		# 		LC_TIME = "en_US.UTF-8";
 		# 	};
-		# };
-		# services.displayManager.gdm = {
-		# 	enable = true;
-		# 	autoSuspend = false;
-		# };
-		# services.desktopManager.gnome.enable = true;
-
-		# Enable RDP
-		# services.gnome.gnome-remote-desktop.enable = true;
-		# services.xrdp = {
-		# 	enable = true;
-		# 	defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-		# 	openFirewall = true;
 		# };
 
 		# Allow laptop to keep running while lid is closed
@@ -94,12 +72,6 @@
 			alsa.enable = true;
 			alsa.support32Bit = true;
 			pulse.enable = true;
-			# If you want to use JACK applications, uncomment this
-			#jack.enable = true;
-
-			# use the example session manager (no others are packaged yet so this is enabled by default,
-			# no need to redefine it in your config for now)
-			#media-session.enable = true;
 		};
 
 		# Enable touchpad support (enabled default in most desktopManager).
@@ -107,48 +79,19 @@
 		programs.zsh = {
 			enable = true;
 		};
-
-		# users.users.gongaku = {
-		# 	shell = pkgs.zsh;
-		# 	isNormalUser = true;
-		# 	description = "gongaku";
-		# 	extraGroups = [ "networkmanager" "wheel" ];
-		# 	packages = with pkgs; [
-		# 	#  thunderbird
-		# 	];
-		# };
-
-		services.displayManager.autoLogin.enable = true;
-		services.displayManager.autoLogin.user = "gongaku";
 		systemd.services."getty@tty1".enable = false;
 		systemd.services."autovt@tty1".enable = false;
 
 		programs.firefox.enable = true;
 
-		# nix.settings.experimental-features = [ "nix-command" "flakes" ];
-		# List packages installed in system profile. To search, run:
-		# $ nix search wget
 		environment.systemPackages = with pkgs; [
 		 git
 		 vim
 		 wget
 		 tmux
 		 nettools
-		 # gnome-remote-desktop
-		 # xrdp
-		 # gnome-session
 		];
 		environment.variables.EDITOR = "vim";
-
-		# services.openssh = {
-		# 	enable = true;
-		# 	settings = {
-		# 		X11Forwarding = true;
-		# 		PermitRootLogin = "no";
-		# 		# PasswordAuthentication = false;
-		# 	};
-		# 	openFirewall = true;
-		# };
 
 		system.autoUpgrade = {
 			enable = true;

@@ -16,9 +16,15 @@
 				};
 			};
 
-			displayManager.gdm = {
-				enable = true;
-				autoSuspend = false;
+			displayManager = {
+				gdm = {
+					enable = true;
+					autoSuspend = false;
+				};
+				autoLogin = {
+					enable = true;
+					user = "${config.preferences.user.name}";
+				};
 			};
 
 			desktopManager.gnome.enable = true;
