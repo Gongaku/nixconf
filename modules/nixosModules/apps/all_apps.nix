@@ -7,8 +7,8 @@
 		...
 	}: {
 		imports = [
-			self.apps.git
-			self.apps.librewolf
+			self.nixosModules.git
+			self.nixosModules.librewolf
 		];
 	};
 }
