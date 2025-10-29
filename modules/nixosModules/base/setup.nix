@@ -2,7 +2,7 @@
 	self,
 	...
 }:{
-	flake.nixosModules.setup = {
+	flake.nixosModules.base = {
 		pkgs,
 		config,
 		...

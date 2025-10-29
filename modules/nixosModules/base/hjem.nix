@@ -2,7 +2,7 @@
 	inputs,
 	...
 }: {
-	flake.nixosModules.hjem = {
+	flake.nixosModules.base = {
 		config,
 		...
 	}: let

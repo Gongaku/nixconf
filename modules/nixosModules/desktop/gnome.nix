@@ -38,6 +38,12 @@
 			};
 		};
 
+		networking.firewall = {
+			enable = true;
+			allowedTCPPorts = [ 3389 ]; # Enable for xRDP
+			allowedUDPPorts = [ 3389 ]; # Enable for xRDP
+		};
+
 		environment.systemPackages = with pkgs; [
 			gnome-remote-desktop
 			gnome-session

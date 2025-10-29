@@ -1,10 +1,10 @@
 {
-	flake.nixosModules.git = { pkgs, ... }: {
+	flake.nixosModules.terminal = { pkgs, ... }: {
 		programs.git = {
 			enable = true;
-			userName = "Gongaku";
-			userEmail = "132847661+Gongaku@users.noreply.github.com";
 			config = {
+				user.name = "Gongaku";
+				user.email = "132847661+Gongaku@users.noreply.github.com";
 				init = {
 					defaultBranch = "main";
 				};
