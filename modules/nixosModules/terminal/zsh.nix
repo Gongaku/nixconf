@@ -48,7 +48,7 @@
 				history = "history -i 0";
 			};
 
-			initExtra = ''
+			shellInit = ''
 				autoload -U compinit && compinit
 				autoload -U colors && colors
 
