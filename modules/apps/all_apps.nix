@@ -2,7 +2,7 @@
 	self,
 	...
 }: {
-	flake.applications.all_apps = {
+	flake.apps.all_apps = {
 		pkgs,
 		...
 	}: {

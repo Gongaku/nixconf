@@ -1,5 +1,5 @@
 {
-	flake.applications.librewolf = { pkgs, ... }: {
+	flake.apps.librewolf = { pkgs, ... }: {
 		programs.firefox = {
 			enable = true;
 			package = pkgs.librewolf;

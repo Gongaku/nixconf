@@ -1,5 +1,5 @@
 {
-	flake.applications.git = { pkgs, ... }: {
+	flake.apps.git = { pkgs, ... }: {
 		programs.git = {
 			enable = true;
 			userName = "Gongaku";

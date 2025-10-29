@@ -19,7 +19,7 @@
 			self.nixosModules.openssh
 
 			# Enable Applications
-			self.applications.all_apps
+			self.apps.all_apps
 		];
 
 		boot = {
