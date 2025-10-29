@@ -12,17 +12,32 @@
 
 	flake.nixosModules.hostNixos = {pkgs, ...}: {
 		imports = [
+			# Enable System-wide configurations
 			self.nixosModules.base_config
 			self.nixosModules.setup
 			self.nixosModules.gnome
 			self.nixosModules.openssh
+
+			# Enable Applications
+			self.applications.all_apps
 		];
-		boot.loader.systemd-boot.enable = true;
-		boot.loader.efi.canTouchEfiVariables = true;
-		boot.kernelParams = [
-			"console=tty50,115200"
-			"console=tty1"
-		];
+
+		boot = {
+			loader = {
+				systemd-boot.enable = true;
+				efi.canTouchEfiVariables = true;
+			};
+			kernelParams = [
+				"console=tty50,115200"
+				"console=tty1"
+			];
+		};
+		# boot.loader.systemd-boot.enable = true;
+		# boot.loader.efi.canTouchEfiVariables = true;
+		# boot.kernelParams = [
+		# 	"console=tty50,115200"
+		# 	"console=tty1"
+		# ];
 
 		networking = {
 			hostName = "nixos"; # Define your hostname.
