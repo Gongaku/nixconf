@@ -18,10 +18,10 @@
 					enable = true;
 					directory = "/home/${user}";
 					user = "${user}";
-				};
 
-				xdg.config.files = {
-					"test".text = "test";
+					xdg.config.files = {
+						"test".text = "test";
+					};
 				};
 
 				clobberByDefault = true;
