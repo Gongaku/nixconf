@@ -4,7 +4,7 @@
 			enable = true;
 			userName = "Gongaku";
 			userEmail = "132847661+Gongaku@users.noreply.github.com";
-			extraConfig = {
+			config = {
 				init = {
 					defaultBranch = "main";
 				};
