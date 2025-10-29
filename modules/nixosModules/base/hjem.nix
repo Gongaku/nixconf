@@ -20,9 +20,9 @@
 					user = "${user}";
 				};
 
-				files = [
-					# ".config"
-				];
+				xdg.config.files = {
+					"test".text = "test";
+				};
 
 				clobberByDefault = true;
 			};
