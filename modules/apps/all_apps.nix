@@ -7,8 +7,8 @@
 		...
 	}: {
 		imports = [
-			self.applications.git
-			self.applications.browser
+			self.apps.git
+			self.apps.browser
 		];
 	};
 }
