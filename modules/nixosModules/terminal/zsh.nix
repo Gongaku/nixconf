@@ -49,6 +49,11 @@
 			};
 
 			shellInit = ''
+				bindkey '^p' history-search-backward
+				bindkey '^n' history-search-forward
+				'';
+
+			promptInit = ''
 				autoload -U compinit && compinit
 				autoload -U colors && colors
 
@@ -60,9 +65,8 @@
 				PS1="%B$PS1_USER@$PS1_HOST:$PS1_PATH%b [%B$PS1_TIME%b]$NEWLINE%j $ "
 				export PS1
 
-				bindkey '^p' history-search-backward
-				bindkey '^n' history-search-forward
-				'';
+				autoload -U promptinit &amp;&amp; promptinit &amp;&amp; prompt suse &amp;&amp; setopt prompt_sp
+			'';
 		};
 	};
 }

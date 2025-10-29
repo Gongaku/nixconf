@@ -20,6 +20,10 @@
 					user = "${user}";
 				};
 
+				files = [
+					# ".config"
+				];
+
 				clobberByDefault = true;
 			};
 		};
