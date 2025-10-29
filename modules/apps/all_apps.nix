@@ -8,7 +8,7 @@
 	}: {
 		imports = [
 			self.apps.git
-			self.apps.browser
+			self.apps.librewolf
 		];
 	};
 }
