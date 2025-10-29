@@ -26,7 +26,7 @@
 		};
 
 		# Firefox theme
-		textfox.url = "github:adriankarlen/textfox"
+		textfox.url = "github:adriankarlen/textfox";
   };
 
 	# Use a `Dendritic` pattern of nix configurations
