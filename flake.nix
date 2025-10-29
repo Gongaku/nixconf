@@ -29,7 +29,7 @@
 		# home directory contents
 		hjem = {
 			url = "github:feel-co/hjem";
-			inputs.nixpkgs.follows = "nixpkgs"
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
 		# NixOS Home Manager. For managing one's home directory contents
