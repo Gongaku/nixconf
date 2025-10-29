@@ -25,6 +25,19 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+		# "Home" in Danish. Similar to Home-Manager, used for managing one's
+		# home directory contents
+		hjem = {
+			url = "github:feel-co/hjem";
+			inputs.nixpkgs.follows = "nixpkgs"
+		};
+
+		# NixOS Home Manager. For managing one's home directory contents
+		# home-manager = {
+		# 	url = "github:nix-community/home-manager";
+		# 	inputs.nixpkgs.follows = "nixpkgs";
+		# };
+
 		# Firefox theme
 		textfox.url = "github:adriankarlen/textfox";
   };
