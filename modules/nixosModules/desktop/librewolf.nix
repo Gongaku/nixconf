@@ -1,5 +1,11 @@
 {
-	flake.nixosModules.librewolf = { pkgs, ... }: {
+	inputs,
+	...
+}: {
+	flake.nixosModules.librewolf = {
+		pkgs,
+		...
+	}: {
 		imports = [
 			inputs.textfox.nixosModules.default
 		];
