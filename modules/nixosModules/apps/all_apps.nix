@@ -2,7 +2,7 @@
 	self,
 	...
 }: {
-	flake.apps.all_apps = {
+	flake.nixosModules.all_apps = {
 		pkgs,
 		...
 	}: {
