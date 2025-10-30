@@ -7,6 +7,7 @@
 		...
 	}: let
 		user = config.preferences.user.name;
+		dotfiles_path = (self + "/dotfiles")
 	in {
 		imports = [
 			inputs.hjem.nixosModules.default
@@ -21,6 +22,10 @@
 
 					xdg.config.files = {
 						"test".text = "test";
+						"zsh/zshrc".source = (dotfiles_path + "zshrc")
+					};
+					files = {
+						".zshenv".text = "ZDOTDIR=$HOME/.config/zsh"
 					};
 				};
 
