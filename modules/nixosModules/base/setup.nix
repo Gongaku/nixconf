@@ -9,13 +9,11 @@
 	}: let
 		username = config.preferences.user.name;
 	in{
-		# Enable flakes
-		nix.settings.experimental-features = [ "nix-command" "flakes" ];
-		# Enable unfree software
-		nixpkgs.config.allowUnfree = true;
+		imports = [
+			self.nixosModules.nix
+		];
 
 		# Setup default user
-		# users.users.${config.preferences.user.name} = {
 		users.users.${username} = {
 			isNormalUser = true;
 			description = "${username}'s account";
