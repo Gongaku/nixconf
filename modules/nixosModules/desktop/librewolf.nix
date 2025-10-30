@@ -44,7 +44,7 @@
 		# Theme
 		textfox = {
 			enable = true;
-			profile = "textfox";
+				# profile = "textfox";
 				# config = {
 				# 	background = {
 				# 		color = "#123456";
