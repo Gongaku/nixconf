@@ -15,9 +15,9 @@
 			inputs.home-manager.nixosModules.default
 		];
 
-		programs.home-manager.enable = true;
-
 		config = {
+			programs.home-manager.enable = true;
+
 			home-manager = {
 				home = {
 					username = "${user}";
