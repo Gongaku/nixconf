@@ -9,6 +9,7 @@
 		imports = [
 			self.nixosModules.gnome
 			self.nixosModules.librewolf
+			self.nixosModules.discord
 		];
 
 		environment.systemPackages = with pkgs; [
