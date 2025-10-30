@@ -26,7 +26,7 @@
 					};
 					xdg.config.files = {
 						"test".text = "test";
-						"zsh/zshrc".source = (dotfiles_path + "zshrc");
+						"zsh/zshrc".source = (dotfiles_path + "/zshrc");
 					};
 				};
 
