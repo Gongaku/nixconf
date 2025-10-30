@@ -1,23 +1,23 @@
 {
 	# `Cachix` configurations
 	# Pulls public binaries so that they do not need to be built
-	nixConfig = {
-		substituters = [
-			# "https://cache.nixos.org/"
-			"https://nixpkgs.cachix.org"
-			"https://nix-community.cachix.org"
-		];
-		trusted-public-keys = [
-			"nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
-			"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-		];
-		extra-substituters = [
-			"https://nix-community.cachix.org"
-		];
-		extra-trusted-public-keys = [
-			"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-		];
-	};
+	# nixConfig = {
+	# 	substituters = [
+	# 		# "https://cache.nixos.org/"
+	# 		"https://nixpkgs.cachix.org"
+	# 		"https://nix-community.cachix.org"
+	# 	];
+	# 	trusted-public-keys = [
+	# 		"nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
+	# 		"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+	# 	];
+	# 	extra-substituters = [
+	# 		"https://nix-community.cachix.org"
+	# 	];
+	# 	extra-trusted-public-keys = [
+	# 		"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+	# 	];
+	# };
 
   inputs = {
 		# NixOS installation
