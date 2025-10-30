@@ -3,7 +3,7 @@
 	self,
 	...
 }: {
-	flake.nixosModules.base = {
+	flake.nixosModules.hjem = {
 		config,
 		...
 	}: let
