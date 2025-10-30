@@ -22,7 +22,7 @@
 					user = "${user}";
 
 					files = {
-						".zshenv".text = "ZDOTDIR=$HOME/.config/zsh";
+						".zshenv".text = "ZDOTDIR=/home/${user}/.config/zsh";
 					};
 					xdg.config.files = {
 						"test".text = "test";

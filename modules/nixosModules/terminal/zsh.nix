@@ -53,11 +53,10 @@
 				bindkey '^n' history-search-forward
 			'';
 
-			interactiveShellInit = ''
-				source $HOME/.config/zsh/zshrc
-			'';
-
 			promptInit = ''
+				# Source PS1
+				source /home/${config.preferences.user.name}/.config/zsh/zshrc
+
 				autoload -U compinit && compinit
 				autoload -U colors && colors
 				autoload -U promptinit && promptinit && prompt suse && setopt prompt_sp

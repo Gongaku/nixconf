@@ -1,8 +1,8 @@
-	# Prompt Formatting
-	NEWLINE=$(printf '\n ')
-	PS1_USER="%{$(tput setaf 51)%}%n%F{reset_color}"
-	PS1_HOST="%{$(tput setaf 46)%}%m%F{reset_color}"
-	PS1_PATH="%F{red}%~%F{reset_color}"
-	PS1_TIME="%{$(tput setaf 214)%}%D{%F %X %Z}%F{reset_color}"
-	PS1="%B$PS1_USER@$PS1_HOST:$PS1_PATH%b [%B$PS1_TIME%b]${NEWLINE}%j $ "
-	export PS1
+# Prompt Formatting
+NEWLINE=$(printf '\n ')
+PS1_USER="%{$(tput setaf 51)%}%n%F{reset_color}"
+PS1_HOST="%{$(tput setaf 46)%}%m%F{reset_color}"
+PS1_PATH="%F{red}%~%F{reset_color}"
+PS1_TIME="%{$(tput setaf 214)%}%D{%F %X %Z}%F{reset_color}"
+PS1="%B$PS1_USER@$PS1_HOST:$PS1_PATH%b [%B$PS1_TIME%b]${NEWLINE}%j $ "
+export PS1
