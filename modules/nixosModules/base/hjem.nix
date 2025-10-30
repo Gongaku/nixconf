@@ -25,8 +25,16 @@
 						".zshenv".text = "ZDOTDIR=/home/${user}/.config/zsh";
 					};
 					xdg.config.files = {
-						"test".text = "test";
+						# Symlink for `zshrc`
+						# Used for Shell Prompt (i.e. `PS1`)
 						"zsh/zshrc".source = (dotfiles_path + "/zshrc");
+
+						# Python LSP style
+						# Ignore specific errors
+						"pycodestyle".text = ''
+							[pycodestyle]
+							ignore = E226,E302,E41,W503,E501
+						'';
 					};
 				};
 
