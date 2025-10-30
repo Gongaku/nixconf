@@ -1,6 +1,6 @@
 {
-	`Cachix` configurations
-	Pulls public binaries so that they do not need to be built
+	# `Cachix` configurations
+	# Pulls public binaries so that they do not need to be built
 	nixConfig = {
 		substituters = [
 			"https://cache.nixos.org/"
