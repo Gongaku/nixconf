@@ -20,12 +20,12 @@
 					directory = "/home/${user}";
 					user = "${user}";
 
+					files = {
+						".zshenv".text = "ZDOTDIR=$HOME/.config/zsh";
+					};
 					xdg.config.files = {
 						"test".text = "test";
 						"zsh/zshrc".source = (dotfiles_path + "zshrc");
-					};
-					files = {
-						".zshenv".text = "ZDOTDIR=$HOME/.config/zsh"
 					};
 				};
 
