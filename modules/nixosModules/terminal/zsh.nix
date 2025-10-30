@@ -55,7 +55,7 @@
 
 			promptInit = ''
 				# Source PS1
-				source /home/${config.preferences.user.name}/zshenv
+				source /home/${config.preferences.user.name}/.zshenv
 
 				autoload -U compinit && compinit
 				autoload -U colors && colors
