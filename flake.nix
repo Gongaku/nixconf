@@ -1,4 +1,15 @@
 {
+	# `Cachix` configurations
+	# Pulls public binaries so that they do not need to be built
+	nixConfig = {
+		extra-substituters = [
+			"https://nix-community.cachix.org"
+		];
+		trusted-public-keys = [
+			"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+		];
+	};
+
   inputs = {
 		# NixOS installation
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -40,6 +51,9 @@
 
 		# Firefox theme
 		textfox.url = "github:adriankarlen/textfox";
+
+		# Gaming
+		nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
 	# Use a `Dendritic` pattern of nix configurations
