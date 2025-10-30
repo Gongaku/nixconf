@@ -1,5 +1,6 @@
 {
 	inputs,
+	self,
 	...
 }: {
 	flake.nixosModules.base = {
