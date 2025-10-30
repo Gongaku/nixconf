@@ -51,21 +51,22 @@
 			shellInit = ''
 				bindkey '^p' history-search-backward
 				bindkey '^n' history-search-forward
-				'';
+			'';
 
 			promptInit = ''
 				autoload -U compinit && compinit
 				autoload -U colors && colors
 
 				NEWLINE=$(printf '\n ')
-				PS1_USER="%{$(tput setaf 51)%}%n%F{reset_color}"
-				PS1_HOST="%{$(tput setaf 46)%}%m%F{reset_color}"
-				PS1_PATH="%F{red}%~%F{reset_color}"
-				PS1_TIME="%{$(tput setaf 214)%}%D{%F %X %Z}%F{reset_color}"
-				PS1="%B$PS1_USER@$PS1_HOST:$PS1_PATH%b [%B$PS1_TIME%b]$NEWLINE%j $ "
+				# PS1_USER="%{$(tput setaf 51)%}%n%F{reset_color}"
+				# PS1_HOST="%{$(tput setaf 46)%}%m%F{reset_color}"
+				# PS1_PATH="%F{red}%~%F{reset_color}"
+				# PS1_TIME="%{$(tput setaf 214)%}%D{%F %X %Z}%F{reset_color}"
+				# PS1="%B$PS1_USER@$PS1_HOST:$PS1_PATH%b [%B$PS1_TIME%b] %j $ "
+				PS1="%B%{$(tput setaf 51)%}%n%F{reset_color}@%{$(tput setaf 46)%}%m%F{reset_color}:%F{red}%~%F{reset_color}%b [%{$(tput setaf 214)%}%D{%F %X %Z}%F{reset_color}] %j $ "
 				export PS1
 
-				autoload -U promptinit &amp;&amp; promptinit &amp;&amp; prompt suse &amp;&amp; setopt prompt_sp
+				autoload -U promptinit && promptinit && prompt suse && setopt prompt_sp
 			'';
 		};
 	};
