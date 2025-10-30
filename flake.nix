@@ -3,7 +3,8 @@
 	# Pulls public binaries so that they do not need to be built
 	nixConfig = {
 		substituters = [
-			"https://cache.nixos.org/"
+			# "https://cache.nixos.org/"
+			"https://nixpkgs.cachix.org"
 			"https://nix-community.cachix.org"
 		];
 		trusted-public-keys = [
