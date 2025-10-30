@@ -53,6 +53,10 @@
 				bindkey '^n' history-search-forward
 			'';
 
+			interactiveShellInit = ''
+				source $HOME/.config/zsh/zshrc
+			'';
+
 			promptInit = ''
 				autoload -U compinit && compinit
 				autoload -U colors && colors
